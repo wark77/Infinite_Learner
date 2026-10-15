@@ -34,6 +34,7 @@ To protect the model from "ghost highways"—paths that appear wide and clear fr
 💻 3. Core Implementation Framework (frc_optimizer.py)
 
 This standalone PyTorch module implements the complete FRC pipeline, simulating a highly complex multi-tunnel environment separated by an explicit bifurcation ridge.
+
 python
 import torch
 import numpy as np
