@@ -1,4 +1,4 @@
-"""This standalone PyTorch module implements the complete FRC pipeline, simulating a highly complex multi-tunnel environment separated by an explicit bifurcation ridge."""
+#This standalone PyTorch module implements the complete FRC pipeline, simulating a highly complex multi-tunnel environment separated by an explicit bifurcation ridge.
 
 python
 import torch
@@ -126,4 +126,4 @@ if __name__ == "__main__":
     
     # 3. Zoom and Enhance to verify micro-stability before altering network weights
     is_safe, final_trajectory = frc.zoom_and_enhance(peak_coordinates, selected_trajectory)
-"""Use code with caution."""
+#Use code with caution.
