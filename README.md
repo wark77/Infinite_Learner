@@ -3,8 +3,11 @@
 
 How it works:
 • 📡 GPU Raymarching Radar: Instead of calculating a single muddy gradient vector per batch, it partitions the GPU batch dimension to project a 2D "screen" of multi-scale derivative step sizes simultaneously. This generates an instantaneous topographic depth map of the local terrain.
+
 • 🏔 Ridge-Riding Vantage Scanning: FRC monitors the terrain's curvature. Instead of blindly popping through a high-loss barrier, it halts the model directly on the ridge peak (the boundary of chaos) and fires a 360° spherical scan to reveal hidden tunnel openings into the next horizon of complexity.
+
 • 🔍 Zoom & Enhance: Before committing weights to a newly discovered tunnel, it executes a localized microscopic sweep at 10x higher spatial resolution to verify that the path is a genuine smooth highway, completely dodging micro-fractal traps.  (possibly an optimization to skip for lower complexity environments)
+
 This shifts AI training away from blind calculus and turns it into a visual steering problem natively optimized for GPU parallel shader architectures. The repository contains the initial core architecture and the working PyTorch implementation.
 
 
