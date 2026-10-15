@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Learner | Fractal Raymarching Cartographer</title>
+    <script src="https://tailwindcss.com"></script>
+    <style>
+        body { background-color: #030712; color: #f3f4f6; font-family: system-ui, sans-serif; }
+        .glow-green { box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
+        .glow-blue { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
+    </style>
+</head>
+<body class="selection:bg-green-500 selection:text-black">
+
+    <!-- Header Navigation -->
+    <header class="border-b border-gray-800 bg-gray-950/50 backdrop-blur sticky top-0 z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <span class="text-2xl animate-spin" style="animation-duration: 10s;">🌀</span>
+            <span class="font-mono font-bold text-xl tracking-wider text-green-400">INFINITE_LEARNER</span>
+        </div>
+        <a href="https://github.com" target="_blank" class="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg font-mono text-sm transition">
+            GitHub Repo →
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        <section class="text-center space-y-6 max-w-3xl mx-auto mb-16">
+            <span class="px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-xs font-mono border border-green-500/20">
+                Alternative Optimization Paradigm
+            </span>
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500">
+                Mapping the Topology of Intelligence
+            </h1>
+            <p class="text-gray-400 text-lg leading-relaxed">
+                Bypassing brute-force scaling dogma. FRC approaches high-dimensional weight spaces as an infinite, self-similar fractal complex of narrow tunnels, navigating via parallel radar maps instead of blind calculus.
+            </p>
+        </section>
+
+        <!-- Live Visualizer Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            
+            <!-- Widget 1: Macro Raymarch Scan -->
+            <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6 glow-green flex flex-col">
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold text-green-400 flex items-center">
+                        <span class="mr-2">📡</span> Macro Panoramic Radar Pass
+                    </h3>
+                    <p class="text-gray-400 text-sm">Real-time simulation of parallel derivative step sizing exploring a chaotic bifurcation ridge.</p>
+                </div>
+                <div class="relative bg-black rounded-xl overflow-hidden aspect-square border border-gray-900 flex items-center justify-center">
+                    <canvas id="macroCanvas" class="w-full h-full"></canvas>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-900 flex justify-between items-center text-xs font-mono text-gray-500">
+                    <span>MODE: RIDGE-DETECTION SCAN</span>
+                    <span class="text-green-500 animate-pulse">● LIVE GPU INTERACTIVE STATE</span>
+                </div>
+            </div>
+
+            <!-- Widget 2: Zoom & Enhance -->
+            <div class="bg-gray-950 border border-gray-800 rounded-2xl p-6 glow-blue flex flex-col">
+                <div class="mb-4">
+                    <h3 class="text-lg font-bold text-blue-400 flex items-center">
+                        <span class="mr-2">🔍</span> Zoom & Enhance (Iterative Refining)
+                    </h3>
+                    <p class="text-gray-400 text-sm">Microscopic scan focusing on a target vector pixel to isolate hidden fractal micro-fissures.</p>
+                </div>
+                <div class="relative bg-black rounded-xl overflow-hidden aspect-square border border-gray-900 flex items-center justify-center">
+                    <canvas id="zoomCanvas" class="w-full h-full"></canvas>
+                </div>
+                <div class="mt-4 pt-4 border-t border-gray-900 flex justify-between items-center text-xs font-mono text-gray-500">
+                    <span>MAGNIFICATION: 10x FOCUS</span>
+                    <span class="text-blue-500">STATUS: TERRAIN VERIFIED SAFE</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Theoretical Overview Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+            <div class="p-6 bg-gray-950 border border-gray-800 rounded-xl">
+                <div class="text-2xl mb-2">🏔️</div>
+                <h4 class="font-bold text-white mb-2">Ridge-Riding</h4>
+                <p class="text-gray-400 text-sm">Halts optimization on phase-transition boundaries. Uses high-entropy peaks to unlock unparalleled panoramic views of branching pathways.</p>
+            </div>
+            <div class="p-6 bg-gray-950 border border-gray-800 rounded-xl">
+                <div class="text-2xl mb-2">🔀</div>
+                <h4 class="font-bold text-white mb-2">Intersection Graphing</h4>
+                <p class="text-gray-400 text-sm">Replaces linear momentum history. Maps saddle crossroads, enabling structured backtracking to previous nodes if paths hit dead-ends.</p>
+            </div>
+            <div class="p-6 bg-gray-950 border border-gray-800 rounded-xl">
+                <div class="text-2xl mb-2">🚪</div>
+                <h4 class="font-bold text-white mb-2">Porous Leaping</h4>
+                <p class="text-gray-400 text-sm">Detects thin high-loss barriers using multi-scale radar. Deliberately punches through transient walls to emerge into new deep manifolds.</p>
+            </div>
+        </section>
+
+        <!-- Footer Citation Quote -->
+        <footer class="text-center py-8 border-t border-gray-900 text-sm text-gray-500 font-mono">
+            "No man is an island, but every man is an infinitely expanding archipelago."
+        </footer>
+    </main>
+
+    <!-- Visualizer Canvas Computation Shader Engine -->
+    <script>
+        function runVisualizerEngine() {
+            const macroCanvas = document.getElementById('macroCanvas');
+            const zoomCanvas = document.getElementById('zoomCanvas');
+            const ctxMacro = macroCanvas.getContext('2d');
+            const ctxZoom = zoomCanvas.getContext('2d');
+
+            let width = macroCanvas.width = zoomCanvas.width = 400;
+            let height = macroCanvas.height = zoomCanvas.height = 400;
+
+            let time = 0;
+
+            function render() {
+                time += 0.01;
+
+                // 1. Render Macro Radar Screen (Winding Tunnel & Bifurcation Ridge)
+                let imgDataMacro = ctxMacro.createImageData(width, height);
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        let nx = (x / width) - 0.5;
+                        let ny = (y / height) - 0.5;
+
+                        // Equation simulating a winding central highway canyon flanked by sharp cliffs
+                        let tunnelLine = 0.2 * Math.sin(ny * 4.0 + time);
+                        let distanceToTunnel = Math.abs(nx - tunnelLine);
+                        
+                        let intensity = Math.exp(-distanceToTunnel * 12.0) * 200; // Tunnel core
+                        let ridgeBoundary = Math.exp(-Math.pow(distanceToTunnel - 0.2, 2) * 80.0) * 255; // High loss walls
+
+                        let r = Math.min(255, ridgeBoundary * 0.9);
+                        let g = Math.min(255, intensity + ridgeBoundary * 0.3);
+                        let b = Math.min(255, intensity * 0.4 + ridgeBoundary * 0.2);
+
+                        let idx = (y * width + x) * 4;
+                        imgDataMacro.data[idx] = r;
+                        imgDataMacro.data[idx+1] = g;
+                        imgDataMacro.data[idx+2] = b;
+                        imgDataMacro.data[idx+3] = 255;
+                    }
+                }
+                ctxMacro.putImageData(imgDataMacro, 0, 0);
+
+                // Labels overlay for Macro
+                ctxMacro.font = '10px monospace';
+                ctxMacro.fillStyle = '#4ade80';
+                ctxMacro.fillText('TUNNEL HIGHWAY CENTRAL VECTOR', 20, 380);
+                ctxMacro.fillStyle = '#f87171';
+                ctxMacro.fillText('BIFURCATION RIDGE WALL', 250, 40);
+
+                // 2. Render Zoom & Enhance 10x View (Micro-Manifold Topology)
+                let imgDataZoom = ctxZoom.createImageData(width, height);
+                for (let y = 0; y < height; y++) {
+                    for (let x = 0; x < width; x++) {
+                        let nx = (x / width) - 0.5;
+                        let ny = (y / height) - 0.5;
+
+                        // Fractal micro-fissure simulation representing stable high-resolution threads
+                        let microThreads = Math.abs(Math.sin(nx * 30.0) * Math.cos(ny * 30.0 + time));
+                        let smoothHighwayValue = Math.exp(-microThreads * 2.0) * 120;
+
+                        let r = smoothHighwayValue * 0.2;
+                        let g = smoothHighwayValue * 0.5;
+                        let b = Math.min(255, smoothHighwayValue * 2.2 + 40); // Dominant deep sapphire tone
+
+                        let idx = (y * width + x) * 4;
+                        imgDataZoom.data[idx] = r;
+                        imgDataZoom.data[idx+1] = g;
+                        imgDataZoom.data[idx+2] = b;
+                        imgDataZoom.data[idx+3] = 255;
+                    }
+                }
+                ctxZoom.putImageData(imgDataZoom, 0, 0);
+                
+                // Labels overlay for Zoom
+                ctxZoom.font = '10px monospace';
+                ctxZoom.fillStyle = '#60a5fa';
+              ctxZoom.fillText('STABLE MICRO-THREAD SUB-GRID MATRIX', 20, 380);
+requestAnimationFrame(render);
+}
+render();
+}
+window.onload = runVisualizerEngine;
