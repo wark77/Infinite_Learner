@@ -1,3 +1,4 @@
+TEMPORARY .0001 version.  Still verifying.  Neat ideas.
 
 🌀 Fractal Raymarching Cartographer (FRC)
 
