@@ -3,6 +3,7 @@ TEMPORARY .0001 version.  Still verifying.  Neat ideas.
 ![Alt text](results_10k_3p.png)
 This early test of sklearn digits (handwritten numbers) indicates that it could live up to expectations.
 Ray, Ray_lr, and MSA are from this project.
+These early tests are a 1d approach to start evaluating the plans below.
 
 🌀 Fractal Raymarching Cartographer (FRC)
 
