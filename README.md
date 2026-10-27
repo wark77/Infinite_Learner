@@ -1,4 +1,4 @@
-# Machine Learning Vision: a view (probe)-based optimizer (exploratory research code, 0BSD)
+# Machine Learning Vision: a view-based optimizer (exploratory research code, 0BSD)
 
 Instead of one gradient step per batch, the **fan** draws a batch and spends a budget of *forward-only probes* on it:
 it builds a small "screen" of candidate directions from informative views (gradient, momentum, optionally a smoothed
